@@ -9,23 +9,23 @@
   <body>
     <div class="container">
       <div class="row">
-        <video id="video"></video>
-        <canvas id="canvas"></canvas>
+        <img id="loaded-image" class="center img-fluid" src="" alt="your image" />
       </div>
-      <div class="footer">
-        <div class="container">
-          <div class="row">
-            <div class="col">
-              <button class="btn btn-primary" id="back-button" type="button">Back</button>
-            </div>
-            <div class="col">
-              <button class="btn btn-primary" id="capture-image" type="button">Capture</button>
-            </div>
-            <div class="col">
-              Share
-            </div>
+    </div>
+    <div class="footer">
+      <div class="container">
+        <div class="row">
+          <div class="col">
+            <button class="btn btn-primary" id="back-button" type="button">Back</button>
+          </div>
+          <div class="col">
+            <input type="file" onchange="readFile(this);">
+          </div>
+          <div class="col">
+            Share
           </div>
         </div>
+
       </div>
     </div>
   </body>

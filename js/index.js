@@ -30,3 +30,13 @@ function init(){
 }
 
 init();
+
+function readFile(input){
+  if(input.files && input.files[0]){
+    var fileReader = new FileReader();
+    fileReader.onload = function(event){
+      document.getElementById("loaded-image").setAttribute("src", event.target.result);
+    };
+    fileReader.readAsDataURL(input.files[0]);
+  }
+}
