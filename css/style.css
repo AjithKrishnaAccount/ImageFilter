@@ -4,12 +4,13 @@
 }
 
 .footer {
-  background-color: blue;
+  background-color: #4178fb;
   position: fixed;
   left: 0;
   bottom: 0;
   width: 100%;
   text-align: center;
+  height: 50px;
 }
 
 .center {
