@@ -13,6 +13,20 @@
   height: 50px;
 }
 
+div.scrollfilter {
+  overflow: auto;
+  white-space: nowrap;
+  bottom: 50px;
+  position: absolute;
+}
+
+div.scrollfilter a {
+  display: inline-block;
+  text-align: center;
+  padding: 14px;
+  text-decoration: none;
+}
+
 .center {
   display: block;
   margin-left: auto;
