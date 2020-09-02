@@ -1,0 +1,12 @@
+.camera-size{
+  height: 500px;
+  width: 300px;
+}
+
+.footer {
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  text-align: center;
+}
