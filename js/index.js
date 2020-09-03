@@ -28,8 +28,11 @@ function init(){
   //   capture();
   // });
 }
-
 init();
+
+$("#file-upload-icon-btn").click(function(){
+  $('input[type="file"]').trigger('click');
+});
 
 function readFile(input){
   if(input.files && input.files[0]){

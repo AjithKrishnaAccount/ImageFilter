@@ -25,6 +25,7 @@ div.scrollfilter a {
   text-align: center;
   padding: 14px;
   text-decoration: none;
+  margin-right: auto;
 }
 
 .center {
@@ -32,4 +33,12 @@ div.scrollfilter a {
   margin-left: auto;
   margin-right: auto;
   width: 100%;
+}
+
+#file-upload{
+  display : none
+}
+
+#image-div{
+  position : fixed;
 }
