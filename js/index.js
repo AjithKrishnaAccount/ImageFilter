@@ -88,7 +88,7 @@ var Filter = {
                       -1, 0, 1 ]);
      var horizontal = Filter.convolute(context.getImageData(0,0,filteredImage.width, filteredImage.height),
                   [ -1, -2, -1,
-                     0,  0,  0,
+                     1,  1,  1,
                      1,  2,  1 ]);
 
                      console.log(vertical);
@@ -144,6 +144,6 @@ var Filter = {
         dst[dstOff+3] = a + alphaFac*(255-a);
       }
     }
-    return data;
+    return horizontal;
   }
 };
