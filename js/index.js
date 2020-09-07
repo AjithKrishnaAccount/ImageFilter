@@ -80,9 +80,30 @@ var Filter = {
     //   imageArray[i+2] = 255;
     //   imageArray[i+3] = imageArray[i];
     // }
-    return Filter.convolute(imageData,   [  0, -1,  0,
-    -1,  5, -1,
-     0, -1,  0 ]);
+
+     var vertical = Filter.convolute(context.createImageData(imageData.width, imageData.height),
+                    [ -1, 0, 1,
+                      -2, 0, 2,
+                      -1, 0, 1 ]);
+     var horizontal = Filter.convolute(context.createImageData(imageData.width, imageData.height),
+                  [ -1, -2, -1,
+                     0,  0,  0,
+                     1,  2,  1 ]);
+
+                     console.log(vertical);
+
+    for (var i=0; i<imageData.data.length; i+=4) {
+        // make the vertical gradient red
+        var v = Math.abs(vertical.data[i]);
+        imageData.data[i] = v;
+        // make the horizontal gradient green
+        var h = Math.abs(horizontal.data[i]);
+        imageData.data[i+1] = h;
+        // and mix in some blue for aesthetics
+        imageData.data[i+2] = (v+h)/4;
+        imageData.data[i+3] = 255; // opaque alpha
+      }
+      return imageData;
   },
   convolute: function(data, weights, opaque){
     var side = Math.round(Math.sqrt(weights.length));
@@ -119,7 +140,7 @@ var Filter = {
         dst[dstOff] = r;
         dst[dstOff+1] = g;
         dst[dstOff+2] = b;
-        dst[dstOff+3] = 255;
+        dst[dstOff+3] = a + alphaFac*(255-a);
       }
     }
     return data;
