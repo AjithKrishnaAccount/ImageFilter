@@ -87,7 +87,7 @@ var Filter = {
                       -2, 0, 2,
                       -1, 0, 1 ]);
      var horizontal = Filter.convolute(context.getImageData(0,0,filteredImage.width, filteredImage.height),
-                  [ -1, -2, -1,
+                  [ 1, 2, 1,
                      1,  1,  1,
                      1,  2,  1 ]);
 
