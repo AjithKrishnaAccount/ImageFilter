@@ -82,13 +82,13 @@ var Filter = {
     // }
 
 
-     var vertical = Filter.convolute(context.getImageData(0,0,filteredImage.width, filteredImage.height),
+     var vertical = Filter.convolute(Filter.greyScale(context),
                     [ -1, 0, 1,
                       -2, 0, 2,
                       -1, 0, 1 ]);
-     var horizontal = Filter.convolute(context.getImageData(0,0,filteredImage.width, filteredImage.height),
-                  [ 1, 2, 1,
-                     1,  1,  1,
+     var horizontal = Filter.convolute(Filter.greyScale(context),
+                  [ -1, -2, -1,
+                     0,  0,  0,
                      1,  2,  1 ]);
 
                      console.log(vertical);
@@ -144,6 +144,19 @@ var Filter = {
         dst[dstOff+3] = a + alphaFac*(255-a);
       }
     }
-    return horizontal;
+    return data;
+  },
+  greyScale: function(context){
+
+    var imageData = context.getImageData(0,0,filteredImage.width, filteredImage.height);
+    var imageArray = imageData.data;
+
+    for(var i = 0, n = imageArray.length; i < n; i+=4){
+      var r = imageArray[i], g = imageArray[i+1], b = imageArray[i+2];
+      var rgb = 0.2126*r + 0.7152*g + 0.0722*b;
+      imageArray[i] = imageArray[i+1] = imageArray[i+2] = rgb;
+    }
+
+    return imageData;
   }
 };
