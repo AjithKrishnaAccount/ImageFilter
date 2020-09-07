@@ -81,11 +81,12 @@ var Filter = {
     //   imageArray[i+3] = imageArray[i];
     // }
 
-     var vertical = Filter.convolute(context.createImageData(imageData.width, imageData.height),
+
+     var vertical = Filter.convolute(context.getImageData(0,0,filteredImage.width, filteredImage.height),
                     [ -1, 0, 1,
                       -2, 0, 2,
                       -1, 0, 1 ]);
-     var horizontal = Filter.convolute(context.createImageData(imageData.width, imageData.height),
+     var horizontal = Filter.convolute(context.getImageData(0,0,filteredImage.width, filteredImage.height),
                   [ -1, -2, -1,
                      0,  0,  0,
                      1,  2,  1 ]);
