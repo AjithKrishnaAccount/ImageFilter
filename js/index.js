@@ -104,7 +104,7 @@ var Filter = {
         imageData.data[i+2] = (v+h)/4;
         imageData.data[i+3] = 255; // opaque alpha
       }
-      return imageData;
+      return horizontal;
   },
   convolute: function(data, weights, opaque){
     var side = Math.round(Math.sqrt(weights.length));
