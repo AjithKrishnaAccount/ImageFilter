@@ -28,6 +28,7 @@ function readFile(input){
     var fileReader = new FileReader();
     fileReader.onload = function(event){
       document.getElementById("loaded-image").setAttribute("src", event.target.result);
+      originalImage.hidden = false;
     };
     fileReader.readAsDataURL(input.files[0]);
   }
