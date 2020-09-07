@@ -29,6 +29,7 @@ function readFile(input){
     fileReader.onload = function(event){
       document.getElementById("loaded-image").setAttribute("src", event.target.result);
       originalImage.hidden = false;
+      filteredImage.hidden = true;
     };
     fileReader.readAsDataURL(input.files[0]);
   }
@@ -118,7 +119,7 @@ var Filter = {
         dst[dstOff] = r;
         dst[dstOff+1] = g;
         dst[dstOff+2] = b;
-        dst[dstOff+3] = a + alphaFac*(255-a);
+        dst[dstOff+3] = 255;
       }
     }
     return data;

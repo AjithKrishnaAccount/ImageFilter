@@ -4,29 +4,13 @@
 }
 
 .footer {
-  background-color: #A4DEF3;
+  background-color: #4178fb;
   position: fixed;
   left: 0;
   bottom: 0;
   width: 100%;
   text-align: center;
-  padding-top: 5px;
-  height: 60px;
-}
-
-h2{
-  font-family: 'Rakkas';
-  color: #932B39;
-}
-
-.header{
-  background-color: #E1F7FE;
-  height: 60px;
-  width: 100%;
-  position: fixed;
-  left: 0;
-  top : 0;
-  justify-content: center;
+  height: 50px;
 }
 
 div.scrollfilter {
@@ -41,7 +25,6 @@ div.scrollfilter a {
   text-align: center;
   padding: 14px;
   text-decoration: none;
-  margin-right: auto;
 }
 
 .center {
@@ -49,25 +32,4 @@ div.scrollfilter a {
   margin-left: auto;
   margin-right: auto;
   width: 100%;
-}
-
-#file-upload{
-  display : none;
-}
-
-
-
-.image-div{
-   position : fixed;
-   margin-top: 60px;
-}
-
-.footer-btn {
-  display: inline-block;
-  border-top: 2px solid #c8951e;
-  border-bottom: 5px solid #757D75;
-  border-left: 5px solid #95A5A6;
-  border-right: 2px solid #c8951e;
-  border-radius: 10px;
-
 }
