@@ -1,61 +1,33 @@
 function init(){
-  // var video = document.getElementById("video");
-  // var canvas = document.getElementById("canvas");
-  // var context = canvas.getContext("2d");
-  //
-  // navigator.getUserMedia = navigator.getUserMedia || navigator.webkitGetUserMedia ||
-  //                           navigator.mozGetUserMedia || navigator.oGetUserMedia || navigator.msGetUserMedia;
-  // if(navigator.getUserMedia){
-  //   navigator.getUserMedia({video: true}, streamCam, throwError);
-  // }
-  //
-  // function streamCam(stream){
-  //   video.srcObject = stream;
-  //   video.play();
-  // }
-  //
-  // function throwError(error){
-  //   console.log(error);
-  // }
-  //
-  // function capture(){
-  //   canvas.width = video.clientWidth;
-  //   canvas.height = video.clientHeight;
-  //   context.drawImage(video, 0, 0);
-  // }
-  //
-  // document.getElementById("capture-image").addEventListener("click", function(){
-  //   capture();
-  // });
+
+  document.querySelector("#file-upload-icon-btn").addEventListener("click", function(){
+    document.querySelector('input[type="file"]').click();
+  });
+
+
+  document.getElementById("filter-list").addEventListener("click", function(event){
+    originalImage.hidden = true;
+    filteredImage.hidden = false;
+
+    context = filteredImage.getContext('2d');
+    filteredImage.width = originalImage.width;
+    filteredImage.height = originalImage.height;
+
+    context.drawImage(originalImage, 0, 0);
+
+    var filterName = event.target.getAttribute("filter-name");
+    var imageData = Filter[filterName](context);
+
+    context.putImageData(imageData, 0, 0);
+  });
 }
 init();
-
-$("#file-upload-icon-btn").click(function(){
-  $('input[type="file"]').trigger('click');
-});
-
-// function bgSource(imgcontainer){
-//   //$(imgcontainer).each(function(){
-//     var img = $(this).find("img");
-//     var height = img.height();
-//     var img_src = img.attr("src");
-//     $(this).css({"background-image": "url("+img_src+")",
-//     "background-size" : "cover",
-//     "background-repeat" : "no-repeat",
-//     "background-position" : "centre"
-//   });
-//   img.hide()
-//   //})
-// }
-
-
 
 function readFile(input){
   if(input.files && input.files[0]){
     var fileReader = new FileReader();
     fileReader.onload = function(event){
       document.getElementById("loaded-image").setAttribute("src", event.target.result);
-      bgSource("image-div");
     };
     fileReader.readAsDataURL(input.files[0]);
   }
@@ -67,23 +39,7 @@ var filteredImage = document.getElementById("filtered-image");
 filteredImage.hidden = true;
 
 
-document.getElementById("filter-list").addEventListener("click", function(event){
-  originalImage.hidden = true;
-  filteredImage.hidden = false;
 
-  context = filteredImage.getContext('2d');
-  filteredImage.width = originalImage.width;
-  filteredImage.height = originalImage.height;
-
-  context.drawImage(originalImage, 0, 0);
-
-  var filterName = event.target.getAttribute("filter-name");
-
-  var imageData = Filter[filterName](context);
-
-  context.putImageData(imageData, 0, 0);
-
-});
 
 
 var Filter = {
