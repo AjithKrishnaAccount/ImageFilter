@@ -102,13 +102,13 @@ var Filter = {
     var imageArray = imageData.data;
 
      var vertical = Filter.convolute(Filter.greyScale(context),
-                    [ -1, 0, 1,
-                      -2, 0, 2,
-                      -1, 0, 1 ]);
+                    [ -2, 0, 2,
+                      -4, 0, 4,
+                      -2, 0, 2 ]);
      var horizontal = Filter.convolute(Filter.greyScale(context),
-                  [ -1, -2, -1,
+                  [ -2, -4, -2,
                      0,  0,  0,
-                     1,  2,  1 ]);
+                     2,  4,  2 ]);
 
 
     for (var i=0; i<imageData2.data.length; i+=4) {
