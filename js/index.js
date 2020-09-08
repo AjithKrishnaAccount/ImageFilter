@@ -70,17 +70,8 @@ var Filter = {
     }
     return imageData;
   },
-  'NeonFilter': function(context){
+  'neon-filter': function(context){
     var imageData = context.getImageData(0,0,filteredImage.width, filteredImage.height);
-    // var imageArray = imageData.data;
-    //
-    // for(var i = 0, n = imageArray.length; i < n; i+=4){
-    //   imageArray[i] = imageArray[i];
-    //   imageArray[i+1] = 255;
-    //   imageArray[i+2] = 255;
-    //   imageArray[i+3] = imageArray[i];
-    // }
-
 
      var vertical = Filter.convolute(Filter.greyScale(context),
                     [ -1, 0, 1,
@@ -91,7 +82,6 @@ var Filter = {
                      0,  0,  0,
                      1,  2,  1 ]);
 
-                     console.log(vertical);
 
     for (var i=0; i<imageData.data.length; i+=4) {
         // make the vertical gradient red
@@ -104,12 +94,47 @@ var Filter = {
         imageData.data[i+2] = (v+h)/4;
         imageData.data[i+3] = 255; // opaque alpha
       }
-      return horizontal;
+      return imageData;
+  },
+  'outline-filter': function(context){
+    var imageData = context.getImageData(0,0,filteredImage.width, filteredImage.height);
+    var imageData2 = context.getImageData(0,0,filteredImage.width, filteredImage.height);
+    var imageArray = imageData.data;
+
+     var vertical = Filter.convolute(Filter.greyScale(context),
+                    [ -1, 0, 1,
+                      -2, 0, 2,
+                      -1, 0, 1 ]);
+     var horizontal = Filter.convolute(Filter.greyScale(context),
+                  [ -1, -2, -1,
+                     0,  0,  0,
+                     1,  2,  1 ]);
+
+
+    for (var i=0; i<imageData2.data.length; i+=4) {
+        // make the vertical gradient red
+        var v = Math.abs(vertical.data[i]);
+        imageData2.data[i] = v;
+        // make the horizontal gradient green
+        var h = Math.abs(horizontal.data[i]);
+        imageData2.data[i+1] = h;
+        // and mix in some blue for aesthetics
+        imageData2.data[i+2] = (v+h)/4;
+        imageData2.data[i+3] = 150; // opaque alpha
+      }
+
+    for(var i = 0, n = imageArray.length; i < n; i+=4){
+      imageArray[i] = imageData2.data[i];
+      imageArray[i+1] = imageData2.data[i+1];
+      imageArray[i+2] = imageData2.data[i+2];
+      //imageArray[i+3] = imageData2.data[i+3];
+    }
+    return imageData;
   },
   convolute: function(data, weights, opaque){
     var side = Math.round(Math.sqrt(weights.length));
     var halfSide = Math.floor(side/2);
-    var src = data.data;
+    var src = data.data.slice();
     var sw = data.width;
     var sh = data.height;
     var w = sw;
@@ -149,7 +174,7 @@ var Filter = {
   greyScale: function(context){
 
     var imageData = context.getImageData(0,0,filteredImage.width, filteredImage.height);
-    var imageArray = imageData.data;
+    var imageArray = imageData.data.slice();
 
     for(var i = 0, n = imageArray.length; i < n; i+=4){
       var r = imageArray[i], g = imageArray[i+1], b = imageArray[i+2];
