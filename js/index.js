@@ -124,9 +124,9 @@ var Filter = {
       }
 
     for(var i = 0, n = imageArray.length; i < n; i+=4){
-      imageArray[i] = imageData2.data[i];
-      imageArray[i+1] = imageData2.data[i+1];
-      imageArray[i+2] = imageData2.data[i+2];
+      imageArray[i] = (imageArray[i]+imageData2.data[i])/2;
+      imageArray[i+1] = (imageArray[i+1]+imageData2.data[i+1])/2;
+      imageArray[i+2] = (imageArray[i+2]+imageData2.data[i+2])/2;
       //imageArray[i+3] = imageData2.data[i+3];
     }
     return imageData;
